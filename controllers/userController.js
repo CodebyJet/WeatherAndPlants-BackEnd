@@ -45,7 +45,7 @@ async function loginUser(req, res, next) {
 
 const getAllUsers = async (_req, res, next) => {
   try {
-    const users = await User.find().populate('entries');
+    const users = await User.find().populate('plantsOwned');
     return res.status(200).json(users);
   } catch (e) {
     next(e);
@@ -55,10 +55,7 @@ const getAllUsers = async (_req, res, next) => {
 const getSingleUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id).populate({
-      path: 'entries',
-      populate: {
-        path: 'country'
-      }
+      path: 'plantsOwned'
     });
     return user
       ? res.status(200).json(user)
@@ -67,6 +64,7 @@ const getSingleUser = async (req, res, next) => {
     next(e);
   }
 };
+
 
 async function searchUser(req, res, next) {
   try {
@@ -98,8 +96,6 @@ const deleteSingleUser = async (req, res, next) => {
 const updateSingleUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
-
-    // console.log('req id is ', req.currentUser._id, 'user._id is ', user._id);
 
     if (!user) {
       return res.status(404).send({ message: 'No user found' });

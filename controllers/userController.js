@@ -37,7 +37,7 @@ async function loginUser(req, res, next) {
       { expiresIn: '6h' }
     );
 
-    return res.status(202).send({ token, message: 'Login Successful!' });
+    return res.status(202).send({ token, message: `Login Successful!${user._id}` });
   } catch (e) {
     next(e);
   }

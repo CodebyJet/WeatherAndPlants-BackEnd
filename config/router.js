@@ -16,10 +16,22 @@ Router.route('/users/:id')
 
 Router.route('/login').post(userController.loginUser);
 
-Router.post('/plants', secureRoute, plantController.createPlant);
-Router.get('/plants', secureRoute, plantController.getAllPlants);
-Router.get('/plants/:id', secureRoute, plantController.getSinglePlant);
-Router.put('/plants/:id', secureRoute, plantController.updatePlant);
-Router.delete('/plants/:id', secureRoute, plantController.deletePlant);
+Router.post('/users/:userId/plants', secureRoute, plantController.createPlant);
+Router.get('/users/:userId/plants', secureRoute, plantController.getAllPlants);
+Router.get(
+  '/users/:userId/plants/:plantId',
+  secureRoute,
+  plantController.getSinglePlant
+);
+Router.put(
+  '/users/:userId/plants/:plantId',
+  secureRoute,
+  plantController.updatePlant
+);
+Router.delete(
+  '/users/:userId/plants/:plantId',
+  secureRoute,
+  plantController.deletePlant
+);
 
 export default Router;

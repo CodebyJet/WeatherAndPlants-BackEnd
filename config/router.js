@@ -1,6 +1,7 @@
 import express from 'express';
 import secureRoute from '../middleware/secureRoute.js';
 import userController from '../controllers/userController.js';
+import plantController from '../controllers/plantController.js';
 
 const Router = express.Router();
 
@@ -15,11 +16,10 @@ Router.route('/users/:id')
 
 Router.route('/login').post(userController.loginUser);
 
-
-router.post('/plants', secureRoute, plantController.createPlant);
-router.get('/plants', secureRoute, plantController.getAllPlants);
-router.get('/plants/:id', secureRoute, plantController.getSinglePlant);
-router.put('/plants/:id', secureRoute, plantController.updatePlant);
-router.delete('/plants/:id', secureRoute, plantController.deletePlant);
+Router.post('/plants', secureRoute, plantController.createPlant);
+Router.get('/plants', secureRoute, plantController.getAllPlants);
+Router.get('/plants/:id', secureRoute, plantController.getSinglePlant);
+Router.put('/plants/:id', secureRoute, plantController.updatePlant);
+Router.delete('/plants/:id', secureRoute, plantController.deletePlant);
 
 export default Router;

@@ -95,4 +95,4 @@ const deletePlant = async (req, res, next) => {
   }
 };
 
-export { createPlant, getAllPlants, getSinglePlant, updatePlant, deletePlant };
+export default { createPlant, getAllPlants, getSinglePlant, updatePlant, deletePlant };

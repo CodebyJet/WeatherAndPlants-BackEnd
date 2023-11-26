@@ -20,8 +20,7 @@ const userSchema = new mongoose.Schema({
       /(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(pw)
   },
   plantsOwned: [{ type: mongoose.Types.ObjectId, ref: 'Plant' }],
-  location: { type: String, required: true },
-  cloudinaryImageId: { type: String }
+  location: { type: String, required: true }
 });
 
 userSchema.pre('save', function encryptPassword(next) {
